@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ndf="https://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ndf:CornerPoints soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <sector xsi:type="xsd:string">?</sector>
+      </ndf:CornerPoints>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,31 @@
+http:
+  port: "8081"
+  readtimeout: "40000"
+
+##American Flights Config
+american:
+  host: "training4-american-api.cloudhub.io"
+  port: "80"
+  basepath: "/"
+  protocol: "HTTP"
+  client_id: "d1374b15c6864c3682ddbed2a247a826"
+  client_secret: "4a87fe7e2e43488c927372AEF981F066"
+  
+##United Flights Config
+training:
+  host: "mu.learn.mulesoft.com"
+  port: "80"
+  basepath: "/"
+  protocol: "HTTP"
+  
+##Delta Flights Config
+delta:
+  wsdl: "http://mu.learn.mulesoft.com/delta?wsdl"
+  service: "TicketServiceService"
+  port: "TicketServicePort"
+  
+##Weather data
+USWeather:
+  host: "graphical.weather.gov"
+  port: "443"
+  

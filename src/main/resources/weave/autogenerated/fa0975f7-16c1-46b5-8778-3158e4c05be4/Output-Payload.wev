@@ -1,0 +1,17 @@
+%dw 2.0
+
+type auto_fa0975f7_16c1_46b5_8778_3158e4c05be4_Output_Payload = Array<org_springguru_learn_Flight>
+type org_springguru_learn_Flight = {|
+  airlineName?: String, 
+  availableSeats?: Number, 
+  departureDate?: String, 
+  destination?: String, 
+  flightCode?: String, 
+  origination?: String, 
+  planeType?: String, 
+  price?: Number
+|} {"class": "org.springguru.learn.Flight",
+"typeId": "org.springguru.learn.Flight"}
+
+
+
