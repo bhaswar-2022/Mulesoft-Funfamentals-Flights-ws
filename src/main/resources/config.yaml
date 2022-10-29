@@ -8,8 +8,8 @@ american:
   port: "80"
   basepath: "/"
   protocol: "HTTP"
-  client_id: "d1374b15c6864c3682ddbed2a247a826"
-  client_secret: "4a87fe7e2e43488c927372AEF981F066"
+  client_id: "![scbVe9hdLC+fqLuJmLoDWppBImtTSqxHPA8NSDktS90cFLYyVy0/WA==]"
+  client_secret: "![vT2NJW7b4VFp48io5hpptg89XyTEOKHpbIAfUvvCp9hw2dub8D7XIg==]"
   
 ##United Flights Config
 training:

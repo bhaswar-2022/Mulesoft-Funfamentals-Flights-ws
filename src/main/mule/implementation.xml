@@ -72,7 +72,7 @@ flatten(payload..payload)]]></ee:set-payload>
 		<logger level="INFO" doc:name="Logger" doc:id="6f171c64-b604-43b5-9668-140a8b6394a7" />
 	</flow>
 	<flow name="getAmericanFlights" doc:id="ee5dc0e2-55a6-4946-942a-c692edaa6257" >
-		<american-flights-api:get-flights doc:name="Get flights" doc:id="ff29ff51-66ff-43c1-b7ca-2c8a94db4650" config-ref="American_Flights_API_Config" client-id="${american.client_id}" client-secret="${american.client_secret}" destination="#[vars.code]"/>
+		<american-flights-api:get-flights doc:name="Get flights" doc:id="ff29ff51-66ff-43c1-b7ca-2c8a94db4650" config-ref="American_Flights_API_Config" client-id="${secure::american.client_id}" client-secret="${secure::american.client_secret}" destination="#[vars.code]"/>
 		<ee:transform doc:name="JSON to [Flight]" doc:id="673719d7-a0c3-4dc7-a52c-b5b22055cd6a" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0

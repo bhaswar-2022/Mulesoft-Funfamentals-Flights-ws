@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
-	xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
-	xmlns:american-flights-api="http://www.mulesoft.org/schema/mule/american-flights-api" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:american-flights-api="http://www.mulesoft.org/schema/mule/american-flights-api" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/american-flights-api http://www.mulesoft.org/schema/mule/american-flights-api/current/mule-american-flights-api.xsd
 http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
-http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
 	<configuration-properties doc:name="Configuration properties" doc:id="6ad732c8-3d0f-4d0c-b5c8-6e0dde0ad65f" file="config.yaml" />
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0a342abb-d2f8-44f2-a42f-0e19401eb8b1" >
-		<http:listener-connection host="0.0.0.0" port="${http.port}" readTimeout="${http.readtimeout}"/>
+		<http:listener-connection host="0.0.0.0" port="${secure::http.port}" readTimeout="${secure::http.readtimeout}"/>
 	</http:listener-config>
-	<american-flights-api:config name="American_Flights_API_Config" doc:name="American Flights API Config" doc:id="39f13dbb-efb0-4279-8625-1a0eec8c29a0" property_host="${american.host}" property_port="${american.port}" property_protocol="${american.protocol}" property_basePath="${american.basepath}" />
-	<http:request-config name="UnitedFlights_Request_configuration" doc:name="HTTP Request configuration" doc:id="ff62ca1f-463d-477b-a76e-b8a64c16e02a" basePath="${training.basepath}" >
-		<http:request-connection protocol="${training.protocol}" host="${training.host}" port="${training.port}" />
+	<american-flights-api:config name="American_Flights_API_Config" doc:name="American Flights API Config" doc:id="39f13dbb-efb0-4279-8625-1a0eec8c29a0" property_host="${secure::american.host}" property_port="${secure::american.port}" property_protocol="${secure::american.protocol}" property_basePath="${secure::american.basepath}" />
+	<http:request-config name="UnitedFlights_Request_configuration" doc:name="HTTP Request configuration" doc:id="ff62ca1f-463d-477b-a76e-b8a64c16e02a" basePath="${secure::training.basepath}" >
+		<http:request-connection protocol="${secure::training.protocol}" host="${secure::training.host}" port="${secure::training.port}" />
 	</http:request-config>
 	<wsc:config name="Delta_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="5817c549-7ea8-4ffb-a6d5-8096092b29a5" >
-		<wsc:connection wsdlLocation="${delta.wsdl}" service="${delta.service}" port="${delta.port}" >
+		<wsc:connection wsdlLocation="${secure::delta.wsdl}" service="${secure::delta.service}" port="${secure::delta.port}" >
 			<reconnection >
 				<reconnect />
 			</reconnection>
@@ -25,10 +26,13 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
 		</wsc:connection>
 	</wsc:config>
 	<http:request-config name="Weather_Request_configuration" doc:name="HTTP Request configuration" doc:id="a3099658-91c1-43e7-9cd3-5a6f3ff935ba" >
-		<http:request-connection protocol="HTTPS" host="${USWeather.host}" port="${USWeather.port}"/>
+		<http:request-connection protocol="HTTPS" host="${secure::USWeather.host}" port="${secure::USWeather.port}"/>
 	</http:request-config>
 	<configuration doc:name="Configuration" doc:id="916609f4-752a-4a06-99b2-65e623a5630b" defaultErrorHandler-ref="globalError_Handler" />
 	<file:config name="File_Config" doc:name="File Config" doc:id="4e8286f9-6646-4106-b71b-f3901916a6a0" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="79ee4ea2-700b-4f78-959f-6bdc64d7c543" file="config.yaml" key="${env.key}" >
+		<secure-properties:encrypt algorithm="Blowfish"/>
+	</secure-properties:config>
 	<error-handler name="globalError_Handler" doc:id="329c6223-bf64-447c-9791-14dd7b3370a5" >
 		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="9077c9aa-460b-4f64-b5be-02ee7a376d46" type="APP:INVALID_DESTINATION">
 				<ee:transform doc:name="Transform Message" doc:id="b2ff5836-8c38-4725-9f77-ba19a3f20c8c" >
