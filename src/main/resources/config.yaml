@@ -1,6 +1,8 @@
+##HTTPS config
 http:
   port: "8081"
   readtimeout: "40000"
+  keypass: "![kY9SBkJJ195zwEbw7uotUg==]"
 
 ##American Flights Config
 american:
@@ -28,4 +30,7 @@ delta:
 USWeather:
   host: "graphical.weather.gov"
   port: "443"
+  
+  
+
   

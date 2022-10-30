@@ -62,7 +62,7 @@ data: {
 		<logger level="INFO" doc:name="Logger" doc:id="14a6e8b8-1d68-430a-8473-8456df00b28f" message="#[vars.DWoutput]"/>
 	</flow>
 	<flow name="postMultipleFlights" doc:id="323c4821-0f80-4143-bd36-b61d2b901f27">
-		<http:listener doc:name="POST: /multipleFlights" doc:id="3b175c29-e415-4f37-a7f5-f7be35ff5564" config-ref="HTTP_Listener_config" path="/multipleFlights" allowedMethods="POST" />
+		<http:listener doc:name="POST: /multipleFlights" doc:id="3b175c29-e415-4f37-a7f5-f7be35ff5564" config-ref="HTTPS_Listener_config" path="/multipleFlights" allowedMethods="POST" />
 		<java:invoke-static method="randomUUID()" doc:name="Invoke static" doc:id="136c0992-08c4-4e86-a1f9-dc7e76d2b9ff" class="java.util.UUID" target="UUID"/>
 		<ee:transform doc:name="Transform Message" doc:id="f2240b70-bb22-4b83-afad-5df7e140e27e">
 			<ee:message>

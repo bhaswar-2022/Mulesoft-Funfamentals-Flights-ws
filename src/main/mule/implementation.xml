@@ -210,7 +210,7 @@ output application/json
 		</error-handler>
 	</flow>
 	<flow name="weatherDataFlow-External" doc:id="ff66e778-8925-483a-a45c-47bc7b6b6564" >
-		<http:listener doc:name="GET /weather" doc:id="4f0f0ae9-c2a2-4ccd-8f4f-8e8b55f0b192" config-ref="HTTP_Listener_config" path="/weather"/>
+		<http:listener doc:name="GET /weather" doc:id="4f0f0ae9-c2a2-4ccd-8f4f-8e8b55f0b192" config-ref="HTTPS_Listener_config" path="/weather"/>
 		<flow-ref doc:name="setCode" doc:id="e778c92f-0fc1-480b-8811-4c126f5ccf9e" name="setCOde"/>
 		<ee:transform doc:name="Transform Message" doc:id="c674feed-e38f-445e-a241-a52a27c4bf66">
 			<ee:message>
